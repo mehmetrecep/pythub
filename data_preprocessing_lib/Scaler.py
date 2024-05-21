@@ -13,15 +13,3 @@ class Scaler:
         scaler = MinMaxScaler()
         df[columns] = scaler.fit_transform(df[columns])
         return df
-    
-    #edited
-    @staticmethod
-    def standardize_data(df,columns, method='minmax'):
-        if method == 'minmax':
-            scaler = MinMaxScaler()
-        elif method == 'standard':
-            scaler = StandardScaler()
-        else:
-            raise ValueError("Invalid method. Choose from 'minmax' or 'standard'.")
-        df[columns] = scaler.fit_transform(df[columns])
-        return df
