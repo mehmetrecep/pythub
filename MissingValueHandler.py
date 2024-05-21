@@ -80,3 +80,36 @@ class MissingValueHandler:
         pd.DataFrame: The DataFrame with rows containing missing values removed.
         """
         return df.dropna(subset=columns)
+    
+    ##edited***********************************************************************************************************
+    @staticmethod
+    def handle_missing_values(df: pd.DataFrame, columns: List[str], strategy='mean',value:any= None) -> pd.DataFrame:
+        missing_values = [None, pd.NA, pd.NaT, 'NA', 'N/A', 'n/a', 'na', 'NaN', 'nan', 'null', 'Null', '', '/N', '\\N']
+
+        if strategy not in ['mean', 'median', 'constant', 'delete']:
+            raise ValueError("Invalid strategy. Choose from 'mean', 'median', 'constant', 'delete', or 'replace'.")
+            
+        if strategy == 'mean':
+            for col in columns:
+                df[col].fillna(df[col].mean(), inplace=True)
+        
+        elif strategy == 'median':
+            for col in columns:
+                df[col].fillna(df[col].median(), inplace=True)
+            
+        elif strategy == 'constant':
+            if value is None:
+                raise ValueError("When using 'constant' strategy, you must provide a value.")
+            for col in columns:
+                df[col].fillna(value, inplace=True)
+                
+        elif strategy == 'delete':
+            df.dropna(subset=columns, inplace=True)
+            
+        elif strategy == 'replace':
+            if value is None:
+                raise ValueError("When using 'replace' strategy, you must provide a value.")
+            df.replace(missing_values, value, inplace=True)
+        return df
+                    
+        
