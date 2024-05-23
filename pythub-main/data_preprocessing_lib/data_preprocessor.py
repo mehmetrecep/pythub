@@ -1,3 +1,5 @@
+import pandas as pd
+from typing import List, Any
 class Changing_value:
    @staticmethod
     def change_value(df: pd.DataFrame, columns: List[str], old_value: Any, new_value:Any) -> pd.DataFrame:
