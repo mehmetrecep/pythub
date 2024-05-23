@@ -18,7 +18,7 @@ class DateTimeHandler:
         """
         if all(col in df.columns for col in columns):
             for col in columns:
-                df[col] = pd.to_datetime(df[col], errors='coerce')
+                df[col] = pd.to_datetime(df[col], errors='coerce', dayfirst=True)
             return df
         else:
             missing_columns = [col for col in columns if col not in df.columns]

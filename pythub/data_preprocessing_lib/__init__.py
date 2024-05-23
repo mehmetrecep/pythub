@@ -7,11 +7,9 @@ from .data_type_converter import DataTypeConverter
 from .categorical_encoder import CategoricalEncoder
 from .date_time_handler import DateTimeHandler
 from .data_frame_loader import DataFrameLoader
-from .csv_reader import CSVReader
 from .data_sorter import DataSorter
 from .data_frame_modifier import DataFrameModifier
-#from .data_preprocessor import DataPreprocessor
-#from .test_data_frame_loader import TestDataFrameLoader
+from .changing_value import ChangingValue
 
 __all__ = [
     'MissingValueHandler',
@@ -24,5 +22,6 @@ __all__ = [
     'DateTimeHandler',
     'DataFrameLoader',
     'DataSorter',
-    'DataFrameModifier'
+    'DataFrameModifier',
+    'ChangingValue'
 ]

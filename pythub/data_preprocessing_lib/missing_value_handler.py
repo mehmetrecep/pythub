@@ -1,5 +1,7 @@
 import pandas as pd
 from typing import List, Union, Any
+import numpy as np
+
 
 
 class MissingValueHandler:
@@ -16,8 +18,9 @@ class MissingValueHandler:
         Returns:
         pd.DataFrame: The DataFrame with missing values replaced.
         """
-        missing_values = [None, pd.NA, pd.NaT, 'NA', 'N/A', 'n/a', 'na', 'NaN', 'nan', 'null', 'Null', '', '/N', '\\N']
+        missing_values = [None, pd.NA, pd.NaT, 'NA', 'N/A', 'n/a', 'na', 'NaN', 'nan', 'null', 'Null', '', '/N', '\\N', np.nan]
         return df.replace(missing_values, value)
+
 
     @staticmethod
     def impute_mean(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
@@ -108,7 +111,7 @@ class MissingValueHandler:
         Note: column name should be passed as string "column_name" not ["column_name"]
         """
         if column in df.columns:
-            missing_values = [None, pd.NA, pd.NaT, 'NA', 'N/A', 'n/a', 'na', 'NaN', 'nan', 'null', 'Null', '', '/N', '\\N']
+            missing_values = [None, pd.NA, pd.NaT, 'NA', 'N/A', 'n/a', 'na', 'NaN', 'nan', 'null', 'Null', '', '/N', '\\N', np.nan]
             return df[df[column].isin(missing_values)]
         else:
             print(f"Column '{column}' not found in DataFrame.")
